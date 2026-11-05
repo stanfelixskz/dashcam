@@ -6,5 +6,10 @@ function average(numbers) {
   return total / numbers.length; // BUG: an empty list gives NaN
 }
 
-console.log("Average of [2, 4, 6]:", average([2, 4, 6]));
-console.log("Average of []:", average([]));
+function show(label, value) {
+  if (Number.isNaN(value)) throw new Error(`${label} is NaN`);
+  console.log(label, value);
+}
+
+show("Average of [2, 4, 6]:", average([2, 4, 6]));
+show("Average of []:", average([]));

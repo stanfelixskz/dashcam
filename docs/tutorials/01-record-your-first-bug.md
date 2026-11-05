@@ -2,7 +2,7 @@
 
 About five minutes. You will switch the dashcam on, make something go wrong, and find the saved recording.
 
-You can use any project. If you want a bug on purpose, copy [examples/demo-app/app.js](../../examples/demo-app/app.js) into a folder and open that folder in VS Code. It averages a list of numbers and returns `NaN` for an empty list.
+You can use any project. If you want a bug on purpose, copy [examples/demo-app/app.js](../../examples/demo-app/app.js) into a folder and open that folder in VS Code. It averages a list of numbers, gets `NaN` for an empty list, and stops with an error. You need [Node.js](https://nodejs.org) installed to run it.
 
 ## 1. Switch it on
 
