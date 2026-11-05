@@ -2,6 +2,18 @@
 
 All notable changes to Dashcam, newest first.
 
+## 0.3.0 (November 2026)
+
+A much more useful report. Everything below is added to the saved Markdown file automatically.
+
+- **At a glance, in the Summary.** The error line, where it points (and whether that is a line you changed since your last commit), **the last time the same command passed** with the files you saved in between, your uncommitted changes, the file and line you were in, and any unsaved edits the report cannot see.
+- **Your uncommitted changes.** The real `git diff` of tracked files, capped in size. Lines you changed are marked `*` in the code snippets, so you can see when an error is on a line you just edited. New setting `dashcam.diffMaxLines` (default `150`, `0` leaves it out).
+- **Project.** The kind of project, the versions of its tools (`node`, `npm`, `python`, `dotnet`, `go`, `java`, `rustc`) and its dependency list (`package.json`, `requirements.txt`, `.csproj`). New setting `dashcam.includeProjectInfo` (default on). The version commands run only in a trusted workspace.
+- **Where and how each command ran:** its folder, the shell, and how long it took.
+- **Problems panel at the time:** the error and warning counts and the first few errors.
+- **Long output keeps its start as well as its end.** The middle is marked as omitted, so an early error is no longer lost.
+- The default for `dashcam.codeContextLines` is now `5`.
+
 ## 0.2.0 (November 2026)
 
 - **Code near the error.** A saved report now includes a few lines of your code around each `file:line` it points at, from stack traces and Problems panel errors, with the line the error points at marked `>`. One report shows the code as well as the error. It is capped in size, passes through secret redaction, and never includes files such as `.env`, `*.pem` or `*.key`.

@@ -2,7 +2,7 @@
 
 About five minutes. You will switch the dashcam on, make something go wrong, and find the saved recording.
 
-You can use any project. If you want a bug on purpose, copy [examples/demo-app/app.js](../../examples/demo-app/app.js) into a folder and open that folder in VS Code. It averages a list of numbers, gets `NaN` for an empty list, and stops with an error. You need [Node.js](https://nodejs.org) installed to run it.
+You can use any project. If you want a bug on purpose, copy the folder [examples/demo-app](../../examples/demo-app) and open it in VS Code. The program reads a list of numbers from `config.json` and prints their average. With `[2, 4, 6]` it works. With an empty list, `[]`, it gets `NaN` and stops with an error. You need [Node.js](https://nodejs.org) installed to run it.
 
 ## 1. Switch it on
 
@@ -16,16 +16,21 @@ The button turns into a stop icon, and at the top of the list you see the curren
 
 ## 2. Make the bug happen
 
-Do what you would normally do. Save a file. Run the program in the VS Code terminal, for example `node app.js`.
+Do what you would normally do, in the VS Code terminal and editor:
+
+1. Run `node app.js`. It works and prints `Average: 4`.
+2. Open `config.json`, change the list to `[]`, and save the file.
+3. Run `node app.js` again. This time it fails.
 
 You do not have to tell Dashcam anything. Entries appear in the list by themselves and are tagged **auto**, each with the time it happened:
 
 ```
-1. Saved app.js          14:08:31 · auto · app.js:1
-2. node app.js           14:08:40 · auto · exit 1
+1. node app.js           14:08:20 · auto
+2. Saved config.json     14:08:31 · auto · config.json:1
+3. node app.js           14:08:40 · auto · exit 1
 ```
 
-A command that fails shows its exit code, and the output it printed is attached to it.
+A command that fails shows its exit code, and the output it printed is attached to it. Because the same command passed earlier, the report will also say when it last worked, and which file you saved in between.
 
 > If you see no terminal commands, your terminal may not support shell integration, or VS Code is older than 1.93. See the [FAQ](../faq.md).
 

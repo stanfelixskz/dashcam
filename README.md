@@ -39,9 +39,12 @@
 _Recording started 2026-11-05 14:08:05, saved 2026-11-05 14:21:40 (UTC+08:00), with Dashcam_
 
 ## Summary                Caught automatically: "node app.js" exited with code 1.
-## Environment            OS, VS Code, Node, git branch and commit,
-                          uncommitted changes, and any tool versions you list
+                          + the error, where it points, when this command last
+                            passed, what you changed, where you were
+## Environment            OS, VS Code, Node, git branch and commit
+## Project                project type, tool versions, dependencies
 ## Changes                the files with uncommitted changes (git projects)
+## Your uncommitted changes   the real git diff
 ## Steps to Reproduce     1. 14:08:31 Saved app.js
                           2. 14:08:40 Run in a terminal: node app.js   (exit code 1, with its output,
                              and the file:line locations named in that output)
@@ -56,7 +59,10 @@ See a full one in [examples/sample-report.md](examples/sample-report.md).
 - **Record automatically.** Terminal commands (with output and exit code), saved files, debug sessions and their output, and new Problems panel errors.
 - **Catch crashes.** A failing command or a crashed debug session stops the recording and saves the report, with a message and an **Open Report** button.
 - **Show what changed.** In a git project, a **Changes** section lists the files with uncommitted changes. File and line locations named in a command's output, such as stack-trace lines, are listed under it as `file:line`.
-- **Show the code too.** A **Code near the error** section includes a few lines of your code around each `file:line` the report points at, so one report shows the code as well as the error.
+- **Get the point at a glance.** The Summary lists the error, where it points, **the last time the same command passed** (and the files you saved in between), what you changed, and where you were.
+- **Show what changed.** The real `git diff` of your uncommitted changes, so a reader sees exactly what you edited.
+- **Show the code too.** A **Code near the error** section includes a few lines of your code around each `file:line` the report points at, with the lines you changed marked `*`, so one report shows the code as well as the error.
+- **Say what it ran on.** The project type, tool versions and dependencies, the folder, shell and duration of each command, and the Problems panel at the time.
 - **Stop and decide.** Click the record button again and Dashcam asks whether to save the recording as a report.
 - **Browse your recordings.** A **Saved Recordings** list in the sidebar, newest first. Crashes caught automatically have a warning icon and show what failed.
 - **Time-stamped, like footage.** The sidebar shows the current date and time and a running clock, and every entry in the report has the time it happened.
@@ -79,7 +85,7 @@ If you code with an AI assistant, a report is a much smaller thing to paste than
 Before you paste:
 
 - **Read the report first.** Secret redaction is pattern matching and can miss things, and the report can contain terminal output and code.
-- Pasting sends the text to that AI service. If a project is private, set `dashcam.codeContextLines` to `0` to leave code out of reports.
+- Pasting sends the text to that AI service. If a project is private, set `dashcam.codeContextLines` and `dashcam.diffMaxLines` to `0` to leave code out of reports.
 
 ## Limits, stated plainly
 

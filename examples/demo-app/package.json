@@ -1,0 +1,6 @@
+{
+  "name": "dashcam-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny program with a deliberate bug, for trying out Dashcam."
+}

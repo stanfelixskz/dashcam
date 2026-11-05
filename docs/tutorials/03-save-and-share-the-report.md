@@ -14,18 +14,31 @@ A saved recording is a report. It is one Markdown file.
 | Section | What goes there |
 |---|---|
 | Title and time stamp | The date and time the recording started, when it was saved, and your time zone (for example `UTC+08:00`), so it makes sense to someone in another country |
-| **Summary** | Only for a crash Dashcam caught: what failed, such as `"node app.js" exited with code 1` |
+| **Summary** | What failed, such as `"node app.js" exited with code 1` (for a crash Dashcam caught), then a few bullets so a reader gets the point at a glance: the **error** line, **where** it points (`app.js:10`, and whether that is a line you changed), **the last time the same command passed** with the files you saved in between, your **uncommitted changes**, which file and line **you were in**, and any **unsaved edits** the report cannot see |
 | **Environment** | OS, VS Code version, Node, workspace, git branch and commit, whether you have uncommitted changes, and any tool versions you listed in `dashcam.extraTools` |
+| **Project** | The kind of project (Node.js, Python, .NET, Go, Java or Rust), the tool versions (`node`, `npm`, `python`, `dotnet`, `go`, `java`, `rustc`), and the dependency list from `package.json`, `requirements.txt` or a `.csproj`. Most "works on my machine" problems are version problems. |
 | **Changes** | In a git project, the files with uncommitted changes when the report was saved, such as `modified app.js` or `untracked notes.txt`. This answers "what did I change right before it broke?" The reports folder is left out. |
-| **Steps to Reproduce** | The numbered story: saved files, terminal commands with their exit code and output, debug sessions and new errors, each with the time it happened, like the stamp on footage, and `file:line` where there is one. For a command, the `file:line` locations in your project that its output names, such as stack-trace lines, are listed as "Mentioned in the output" |
-| **Code near the error** | A few lines of your code around each `file:line` the report points at, with the line the error points at marked `>`. So the report shows the code as well as the error. Secret-looking files such as `.env` are never included, and `dashcam.codeContextLines` set to `0` leaves code out. |
+| **Your uncommitted changes** | The real diff (`git diff`) of tracked files since your last commit, so a reader sees exactly what changed. Capped in size, and files such as `.env` are left out. `dashcam.diffMaxLines` set to `0` leaves it out. |
+| **Steps to Reproduce** | The numbered story: saved files, terminal commands with their exit code and output, debug sessions and new errors, each with the time it happened, like the stamp on footage, and `file:line` where there is one. For a command, the `file:line` locations in your project that its output names, such as stack-trace lines, are listed as "Mentioned in the output". Each command also shows the folder and shell it ran in and how long it took, and for very long output the start and the end are both kept |
+| **Code near the error** | A few lines of your code around each `file:line` the report points at, with the line the error points at marked `>` and the lines you changed since your last commit marked `*`. So the report shows the code as well as the error, and whether the error is on a line you just edited. Secret-looking files such as `.env` are never included, and `dashcam.codeContextLines` set to `0` leaves code out. |
+| **Problems panel at the time** | How many errors and warnings the Problems panel had when the report was saved, and the first few errors with their `file:line` |
 | **Errors and Output** | What debug sessions printed to stdout and stderr |
 
 A complete one: [examples/sample-report.md](../../examples/sample-report.md).
 
-Here is the end of a real one, saved after `.\fail.cmd` failed. The terminal entries have their exit codes and output, and the stack-trace line `app.js:6:12` is listed as "Mentioned in the output":
+Here is the top of a real one, saved after the demo app failed (see [tutorial 1](01-record-your-first-bug.md)). The Summary tells the story in five lines: the error, where it points, that the same command passed 39 seconds earlier, which file was saved in between, and what is uncommitted.
 
-![The Steps to Reproduce part of a saved report, with an exit code, the command's output, and "Mentioned in the output: app.js:6"](../images/report-steps.png)
+> ## Summary
+>
+> Caught automatically: "node app.js" exited with code 1.
+>
+> - **Error:** `Error: Average: is NaN`
+> - **Where:** `app.js:11`
+> - **Last time `node app.js` passed:** 17:49:26, 39 seconds before it failed. Files saved in between: `config.json`.
+> - **Uncommitted changes:** `config.json` (modified), `notes.txt` (untracked)
+> - **You were in:** `config.json, line 1`
+
+Lower down, **Your uncommitted changes** shows the edit itself (`-{ "numbers": [2, 4, 6] }` and `+{ "numbers": [] }`), and **Code near the error** shows the `average()` function with its `// BUG` comment, so the cause is in the report.
 
 Want to add your own words, such as what you expected? It is a Markdown file. Open it and type under the heading.
 

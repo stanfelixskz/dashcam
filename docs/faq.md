@@ -59,7 +59,7 @@ Entries older than 30 minutes drop off. Make the window shorter with `dashcam.bu
 
 ## Does the report include my code?
 
-A few lines of it. Since 0.2.0, a report includes **Code near the error**: the lines around each `file:line` the report points at (from a stack trace or a Problems panel error), with the line the error points at marked `>`. It never includes the whole project, and never files such as `.env` or `*.pem`. To leave code out, set `dashcam.codeContextLines` to `0`. For the limits, see the [reference](reference.md).
+A few lines of it. Since 0.2.0, a report includes **Code near the error**: the lines around each `file:line` the report points at (from a stack trace or a Problems panel error), with the line the error points at marked `>`. Since 0.3.0 it also includes the `git diff` of your uncommitted changes (capped at `dashcam.diffMaxLines`, 150 lines by default). It never includes the whole project, and never files such as `.env` or `*.pem`. To leave code out, set `dashcam.codeContextLines` and `dashcam.diffMaxLines` to `0`. For the limits, see the [reference](reference.md).
 
 ## Can I paste a report into an AI assistant?
 

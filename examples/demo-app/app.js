@@ -1,9 +1,10 @@
 // A tiny program with a deliberate bug, for trying out Dashcam.
 // Run it with:  node app.js
+const { numbers } = require("./config.json");
 
-function average(numbers) {
-  const total = numbers.reduce((a, b) => a + b, 0);
-  return total / numbers.length; // BUG: an empty list gives NaN
+function average(list) {
+  const total = list.reduce((a, b) => a + b, 0);
+  return total / list.length; // BUG: an empty list gives NaN
 }
 
 function show(label, value) {
@@ -11,5 +12,4 @@ function show(label, value) {
   console.log(label, value);
 }
 
-show("Average of [2, 4, 6]:", average([2, 4, 6]));
-show("Average of []:", average([]));
+show("Average:", average(numbers));
