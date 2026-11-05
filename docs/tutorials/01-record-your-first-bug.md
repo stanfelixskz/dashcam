@@ -12,6 +12,8 @@ That is all. There is no name to type. The recording is titled with the date and
 
 The button turns into a stop icon, and at the top of the list you see the current date and time with a running `REC 00:00:00` clock, and a red **REC** line with the date and time the recording started. The status bar at the bottom shows the same clock with a red dot, so you can tell it is recording even with the sidebar closed. That is the red light: the dashcam is rolling.
 
+![The Dashcam sidebar while recording](../images/recording.png)
+
 ## 2. Make the bug happen
 
 Do what you would normally do. Save a file. Run the program in the VS Code terminal, for example `node app.js`.
@@ -37,6 +39,8 @@ If a terminal command **fails** (exits with an error), or a debug session **cras
 
 A car dashcam does the same: when it senses a crash, it locks the clip. The recording appears in the **Saved Recordings** list (with a warning icon), and the dashcam stays off until you turn it on again.
 
+![The message shown when Dashcam catches a crash](../images/crash-caught.png)
+
 ## 4. Or stop it yourself
 
 You do not need a crash. When you are done, click the record button again. It is now a stop button, in the same place. Dashcam asks:
@@ -50,6 +54,8 @@ You do not need a crash. When you are done, click the record button again. It is
 ## 5. Find it again
 
 Open the **Saved Recordings** list in the Dashcam sidebar, under the Recording list. Every saved recording is there, newest first, named by its date and time. Each one **is** a report: click it to open the Markdown file, or use the trash icon to delete it. Crashes caught automatically have a warning icon and say what failed.
+
+![A saved recording in the list, opened as a Markdown report](../images/saved-and-report.png)
 
 ## 6. Turn it on again
 

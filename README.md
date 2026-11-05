@@ -4,6 +4,20 @@
 
 > **Status: pre-release (0.1.0).** Dashcam is free. It is not on the VS Code Marketplace yet, so see the [install guide](docs/install.md). This repository holds the documentation, tutorials, examples and issue tracker. The extension's source code is not published here.
 
+## See it
+
+**While it records.** The sidebar shows the date and time, a running `REC` clock and the red **REC** line. The red square at the top is the stop button, and the gear opens the settings.
+
+![The Dashcam sidebar while recording, with the date and time, a REC clock and the stop button](docs/images/recording.png)
+
+**When it catches a crash.** A failing command stops the recording and saves the report by itself.
+
+![The message "Dashcam caught a crash and stopped" with an Open Report button](docs/images/crash-caught.png)
+
+**Every saved recording is a report.** Click one in **Saved Recordings** to open the Markdown file. The warning icon marks a crash Dashcam caught.
+
+![The Saved Recordings list next to the opened Markdown report](docs/images/saved-and-report.png)
+
 ## How it works, as a dashcam
 
 | A car dashcam | Dashcam in VS Code |
