@@ -19,6 +19,13 @@ Caught automatically: "node app.js" exited with code 1.
 | Uncommitted changes | yes |
 | node --version | v22.11.0 |
 
+## Changes
+
+Files with uncommitted changes when this was saved:
+
+- modified `app.js`
+- untracked `notes.txt`
+
 ## Steps to Reproduce
 
 1. **14:08:31** Saved app.js
@@ -30,9 +37,11 @@ Caught automatically: "node app.js" exited with code 1.
    - Exit code: `1`
    - Output:
      ```
-     Average of [2, 4, 6]: 4
-     Average of []: NaN
+     TypeError: Cannot read properties of undefined (reading 'length')
+         at average (app.js:6:12)
+         at Object.<anonymous> (app.js:10:34)
      Error: bad total, api_key=[REDACTED]
      ```
+   - Mentioned in the output: `app.js:6`, `app.js:10`
 3. **14:08:41** Problems panel error: Object is possibly 'undefined'.
    - Location: `app.js:6`

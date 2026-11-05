@@ -63,7 +63,7 @@ Not necessarily. Redaction is pattern matching. Read the report before sharing i
 
 ## The Environment section has no git lines
 
-`git` is not on your PATH, or the folder is not a git repository. The other lines still appear.
+`git` is not on your PATH, or the folder is not a git repository. The other lines still appear, and the **Changes** section is left out.
 
 ## What happens if I close VS Code while it is recording?
 

@@ -16,10 +16,15 @@ A saved recording is a report. It is one Markdown file.
 | Title and time stamp | The date and time the recording started, when it was saved, and your time zone (for example `UTC+08:00`), so it makes sense to someone in another country |
 | **Summary** | Only for a crash Dashcam caught: what failed, such as `"node app.js" exited with code 1` |
 | **Environment** | OS, VS Code version, Node, workspace, git branch and commit, whether you have uncommitted changes, and any tool versions you listed in `dashcam.extraTools` |
-| **Steps to Reproduce** | The numbered story: saved files, terminal commands with their exit code and output, debug sessions and new errors, each with the time it happened, like the stamp on footage, and `file:line` where there is one |
+| **Changes** | In a git project, the files with uncommitted changes when the report was saved, such as `modified app.js` or `untracked notes.txt`. This answers "what did I change right before it broke?" The reports folder is left out. |
+| **Steps to Reproduce** | The numbered story: saved files, terminal commands with their exit code and output, debug sessions and new errors, each with the time it happened, like the stamp on footage, and `file:line` where there is one. For a command, the `file:line` locations in your project that its output names, such as stack-trace lines, are listed as "Mentioned in the output" |
 | **Errors and Output** | What debug sessions printed to stdout and stderr |
 
 A complete one: [examples/sample-report.md](../../examples/sample-report.md).
+
+Here is the end of a real one, saved after `.\fail.cmd` failed. The terminal entries have their exit codes and output, and the stack-trace line `app.js:6:12` is listed as "Mentioned in the output":
+
+![The Steps to Reproduce part of a saved report, with an exit code, the command's output, and "Mentioned in the output: app.js:6"](../images/report-steps.png)
 
 Want to add your own words, such as what you expected? It is a Markdown file. Open it and type under the heading.
 

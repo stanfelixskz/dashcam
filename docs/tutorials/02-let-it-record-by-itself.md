@@ -6,7 +6,7 @@ A real dashcam comes on with the car. You do not press anything. Dashcam can wor
 
 The quickest way: when the Dashcam sidebar says Dashcam is off, press the **Turn On Auto Start** button below the text. You can also press Ctrl+Shift+P and run **Dashcam: Turn Auto Start On or Off**. The gear icon at the top of the sidebar opens all of Dashcam's settings.
 
-![The panel when Dashcam is off and Auto Start is on. The button turns Auto Start off.](../images/off.png)
+![The panel when Dashcam is off. The button turns Auto Start on.](../images/off.png)
 
 Or open **Settings** (Ctrl+,), search for **Dashcam**, and tick **Auto Start**. Or add this to your settings:
 

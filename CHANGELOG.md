@@ -24,6 +24,7 @@ The first version. It is not on the VS Code Marketplace yet.
 **Report**
 - One Markdown file named `dashcam-<date>-<time>.md` in `bug-reports/`, with Summary (for caught crashes), Environment, Steps to Reproduce, and Errors and Output.
 - The header gives when the recording started and was saved, with your time zone, and each step, input and output shows the time it happened.
+- A **Changes** section lists the files with uncommitted changes (git projects only). A command's output is also checked for `file:line` locations in your project, such as stack-trace lines, which are listed as "Mentioned in the output".
 - The Environment section is filled in for you: OS, VS Code, Node, workspace, git branch and commit, uncommitted changes, and any tool versions you list in `dashcam.extraTools`.
 - Likely passwords, tokens, API keys, bearer headers, JWTs, private keys and URL credentials are replaced with `[REDACTED]` (`dashcam.redactSecrets`).
 

@@ -47,6 +47,11 @@ Dashcam waits about a second so the failing command's last output arrives, saves
 
 Turn this off with `dashcam.detectCrashes`.
 
+## What else goes in a saved report
+
+- **Changes.** In a git project, the files with uncommitted changes when the report is saved: modified, added, deleted, renamed or untracked. The folder Dashcam saves reports in is left out. Not shown outside a git project, or when nothing has changed.
+- **Mentioned in the output.** Dashcam scans a command's output and debug output for `path/to/file.ext:line` (for example `app.js:6:12` in a stack trace) and lists the ones that point at a real file inside your project. URLs, version numbers, missing files and paths outside the project are ignored. At most five per entry.
+
 ## Settings
 
 | Setting | Default | What it does |

@@ -41,8 +41,10 @@ _Recording started 2026-11-05 14:08:05, saved 2026-11-05 14:21:40 (UTC+08:00), w
 ## Summary                Caught automatically: "node app.js" exited with code 1.
 ## Environment            OS, VS Code, Node, git branch and commit,
                           uncommitted changes, and any tool versions you list
+## Changes                the files with uncommitted changes (git projects)
 ## Steps to Reproduce     1. 14:08:31 Saved app.js
-                          2. 14:08:40 Run in a terminal: node app.js   (exit code 1, with its output)
+                          2. 14:08:40 Run in a terminal: node app.js   (exit code 1, with its output,
+                             and the file:line locations named in that output)
 ## Errors and Output      what debug sessions printed
 ```
 
@@ -52,6 +54,7 @@ See a full one in [examples/sample-report.md](examples/sample-report.md).
 
 - **Record automatically.** Terminal commands (with output and exit code), saved files, debug sessions and their output, and new Problems panel errors.
 - **Catch crashes.** A failing command or a crashed debug session stops the recording and saves the report, with a message and an **Open Report** button.
+- **Show what changed.** In a git project, a **Changes** section lists the files with uncommitted changes. File and line locations named in a command's output, such as stack-trace lines, are listed under it as `file:line`.
 - **Stop and decide.** Click the record button again and Dashcam asks whether to save the recording as a report.
 - **Browse your recordings.** A **Saved Recordings** list in the sidebar, newest first. Crashes caught automatically have a warning icon and show what failed.
 - **Time-stamped, like footage.** The sidebar shows the current date and time and a running clock, and every entry in the report has the time it happened.
