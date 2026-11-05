@@ -10,7 +10,7 @@ Dashcam needs no account, no sign-in and no internet connection.
 
 ## Install it
 
-Dashcam is on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam). It is a pre-release (0.1.0).
+Dashcam is on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam). It is a pre-release (0.3.0).
 
 1. In VS Code open the **Extensions** view (Ctrl+Shift+X).
 2. Search for **Dashcam** and choose the one published by **Felix** (`stanfelixskz.dashcam`).

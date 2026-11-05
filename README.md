@@ -2,7 +2,7 @@
 
 **A dashcam for your code.** A car dashcam records the road while you drive, and when there is a crash you keep the footage. Dashcam does the same while you work in VS Code: it records what happens, and when something breaks it saves the footage as a shareable Markdown bug report.
 
-> **Status: pre-release (0.1.0).** Dashcam is free and on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam): search for **Dashcam** in the Extensions view, or see the [install guide](docs/install.md). This repository holds the documentation, tutorials, examples and issue tracker. The extension's source code is not published here.
+> **Status: pre-release (0.3.0).** Dashcam is free and on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam): search for **Dashcam** in the Extensions view, or see the [install guide](docs/install.md). This repository holds the documentation, tutorials, examples and issue tracker. The extension's source code is not published here.
 
 ## See it
 
