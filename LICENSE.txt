@@ -1,0 +1,111 @@
+DASHCAM - FREEWARE LICENCE AGREEMENT
+Version 1.0, November 2026
+
+Please read this agreement. By installing or using Dashcam you accept it. If you
+do not accept it, do not install or use Dashcam.
+
+In this agreement, "Dashcam" means the Visual Studio Code extension called
+Dashcam, including its documentation and any updates supplied with it.
+"Licensor" means John Mark Sander P. Escueta, who makes Dashcam available.
+"You" means the person or organisation using Dashcam.
+
+
+1. WHAT YOU MAY DO
+
+   You may install and use Dashcam, free of charge, on any number of your own
+   computers, for any lawful purpose, including study, research, personal
+   projects and the internal work of your business or organisation.
+
+   You may copy and share the unmodified Dashcam package (the original .vsix
+   file) with others, free of charge, as long as this agreement stays with it.
+
+
+2. WHAT YOU MAY NOT DO
+
+   a) You may not sell, rent, lease or charge for Dashcam, or include it in a
+      product or service that is sold, without the Licensor's written
+      permission. Charging only for the cost of copying or delivering it is not
+      a sale.
+   b) You may not modify Dashcam, create derivative works from it, or share
+      modified copies.
+   c) You may not reverse engineer, decompile or disassemble Dashcam, or try to
+      obtain its source code, except to the extent that the law of the
+      Philippines expressly allows despite this restriction (for example, for
+      interoperability).
+   d) You may not remove or change any copyright, licence or attribution notice
+      in Dashcam.
+   e) You may not offer Dashcam's functions to other people as an online or
+      hosted service.
+   f) You may not use Dashcam to break the law or to infringe anyone's rights.
+
+
+3. OWNERSHIP
+
+   Dashcam is licensed to you, not sold. The Licensor keeps all rights in
+   Dashcam that this agreement does not expressly give you. The name "Dashcam"
+   is not licensed to you for use as a name or mark of your own products or
+   services.
+
+   Dashcam runs inside Visual Studio Code, which is a separate product with its
+   own licence. Nothing in this agreement changes your rights in it.
+
+
+4. YOUR DATA AND YOUR FILES
+
+   Dashcam works on your computer. Dashcam itself contains no code that
+   connects to the internet or sends your files, your data or information about
+   your use to the Licensor or anyone else. It writes only the report files you
+   ask it to save, and it keeps a recording in progress in Visual Studio Code's
+   own workspace storage on your computer.
+
+   Dashcam can read the output of your terminal commands and debug sessions
+   while a recording is on. It tries to replace likely secrets with
+   [REDACTED] in saved reports, but this is pattern matching and it can miss
+   things. You are responsible for reading a report before you share it.
+
+
+5. NO WARRANTY
+
+   Dashcam is provided "AS IS" and "AS AVAILABLE", free of charge, without any
+   warranty of any kind, express or implied, including any warranty of
+   merchantability, fitness for a particular purpose, accuracy or
+   non-infringement, to the fullest extent permitted by law. The Licensor does
+   not promise that Dashcam will be free of errors, that it will capture every
+   event, or that it will be kept up to date. The Licensor has no duty to
+   provide support or updates.
+
+
+6. LIMIT OF LIABILITY
+
+   To the fullest extent permitted by law, the Licensor is not liable to you for
+   any loss or damage arising from your use of Dashcam or your inability to use
+   it, including lost data, lost profits, lost savings, secrets that appear in a
+   report you shared, or indirect, incidental, special or consequential damage,
+   even if the Licensor was told such loss was possible. Because Dashcam is
+   free, the Licensor's total liability for any claim is limited to the amount
+   you paid for Dashcam, which is zero. Nothing in this agreement excludes
+   liability that the law does not allow to be excluded.
+
+
+7. ENDING THIS AGREEMENT
+
+   This agreement lasts until it ends. It ends automatically if you break any
+   of its terms. You may end it at any time by uninstalling Dashcam and deleting
+   all copies. When it ends, you must stop using Dashcam and delete your copies.
+   Sections 3, 5, 6, 7 and 8 continue after it ends.
+
+
+8. GENERAL
+
+   a) This agreement is governed by the laws of the Republic of the
+      Philippines. The courts of the Philippines have jurisdiction over any
+      dispute about it.
+   b) If any part of this agreement cannot be enforced, the rest still applies.
+   c) This is the whole agreement between you and the Licensor about Dashcam.
+      The Licensor may offer a newer version of this agreement with a newer
+      version of Dashcam; the version supplied with the Dashcam you install is
+      the one that applies to that copy.
+   d) Not insisting on a right under this agreement is not giving it up.
+
+
+Contact: escuetajohn21@gmail.com

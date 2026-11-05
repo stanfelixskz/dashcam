@@ -1,0 +1,34 @@
+name: Feature request
+description: Something Dashcam could record, show or do.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Describe the situation, not only the feature. For example, "I debug a Python service and the crash never shows up in the report."
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+      description: How you imagine it working. It is fine if you are not sure.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part is it about?
+      options:
+        - What gets recorded automatically
+        - The crash popup
+        - The report contents or layout
+        - Secret redaction
+        - The sidebar
+        - Settings
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else

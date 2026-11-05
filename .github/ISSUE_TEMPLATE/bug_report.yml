@@ -1,0 +1,70 @@
+name: Bug report
+description: Dashcam does not work, or works in a confusing way.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time. **Please do not paste real secrets, tokens or private data.** If you attach a Dashcam report, read it first, because redaction is pattern matching and can miss things.
+  - type: input
+    id: version
+    attributes:
+      label: Dashcam version
+      description: In the Extensions view, for example 0.1.0.
+    validations:
+      required: true
+  - type: input
+    id: vscode
+    attributes:
+      label: VS Code version
+      description: Help → About. For example 1.95.0.
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system and terminal
+      description: For example Windows 11 with PowerShell, or Ubuntu 24.04 with bash.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did it happen?
+      options:
+        - Starting a recording, or auto-start
+        - Terminal commands not captured
+        - Debug sessions or Problems errors
+        - The crash popup
+        - The sidebar list
+        - The saved report
+        - Redaction missed a secret (use a fake example)
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead? Copy any message exactly as it appears.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Set dashcam.autoStart to true
+        2. Open a folder
+        3. ...
+  - type: textarea
+    id: settings
+    attributes:
+      label: Your Dashcam settings
+      description: Any `dashcam.*` settings you changed.
+      render: json
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: A screenshot is welcome if it contains no private data.
