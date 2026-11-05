@@ -57,6 +57,14 @@ No. VS Code cannot see inside a running app. The saved report is a Markdown file
 
 Entries older than 30 minutes drop off. Make the window shorter with `dashcam.bufferMinutes`, or delete entries in the Recording list before you stop.
 
+## Does the report include my code?
+
+A few lines of it. Since 0.2.0, a report includes **Code near the error**: the lines around each `file:line` the report points at (from a stack trace or a Problems panel error), with the line the error points at marked `>`. It never includes the whole project, and never files such as `.env` or `*.pem`. To leave code out, set `dashcam.codeContextLines` to `0`. For the limits, see the [reference](reference.md).
+
+## Can I paste a report into an AI assistant?
+
+Yes, that is a good use for it: it is a lot smaller than pasting your project, and it shows the error, what you changed and the code around the error. Read it first, because redaction is pattern matching, and remember that pasting sends the text to that service.
+
 ## Did it hide all my secrets?
 
 Not necessarily. Redaction is pattern matching. Read the report before sharing it. If you find a kind of secret it misses, [open an issue](https://github.com/stanfelixskz/dashcam/issues/new/choose) with a **fake** example.

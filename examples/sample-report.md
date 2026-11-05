@@ -37,11 +37,33 @@ Files with uncommitted changes when this was saved:
    - Exit code: `1`
    - Output:
      ```
-     TypeError: Cannot read properties of undefined (reading 'length')
-         at average (app.js:6:12)
-         at Object.<anonymous> (app.js:10:34)
-     Error: bad total, api_key=[REDACTED]
+     app.js:10
+       if (Number.isNaN(value)) throw new Error(`${label} is NaN`);
+                                ^
+
+     Error: Average of []: is NaN
+         at show (app.js:10:34)
+         at Object.<anonymous> (app.js:15:1)
+     Node.js v22.11.0
      ```
-   - Mentioned in the output: `app.js:6`, `app.js:10`
-3. **14:08:41** Problems panel error: Object is possibly 'undefined'.
-   - Location: `app.js:6`
+   - Mentioned in the output: `app.js:10`, `app.js:15`
+
+## Code near the error
+
+The lines of code around the places named in this report. `>` marks the line an error points at.
+
+**app.js** (lines 5-15)
+
+```
+   5 |   const total = numbers.reduce((a, b) => a + b, 0);
+   6 |   return total / numbers.length; // BUG: an empty list gives NaN
+   7 | }
+   8 | 
+   9 | function show(label, value) {
+> 10 |   if (Number.isNaN(value)) throw new Error(`${label} is NaN`);
+  11 |   console.log(label, value);
+  12 | }
+  13 | 
+  14 | show("Average of [2, 4, 6]:", average([2, 4, 6]));
+> 15 | show("Average of []:", average([]));
+```

@@ -45,6 +45,7 @@ _Recording started 2026-11-05 14:08:05, saved 2026-11-05 14:21:40 (UTC+08:00), w
 ## Steps to Reproduce     1. 14:08:31 Saved app.js
                           2. 14:08:40 Run in a terminal: node app.js   (exit code 1, with its output,
                              and the file:line locations named in that output)
+## Code near the error    a few lines around each file:line the report points at
 ## Errors and Output      what debug sessions printed
 ```
 
@@ -55,6 +56,7 @@ See a full one in [examples/sample-report.md](examples/sample-report.md).
 - **Record automatically.** Terminal commands (with output and exit code), saved files, debug sessions and their output, and new Problems panel errors.
 - **Catch crashes.** A failing command or a crashed debug session stops the recording and saves the report, with a message and an **Open Report** button.
 - **Show what changed.** In a git project, a **Changes** section lists the files with uncommitted changes. File and line locations named in a command's output, such as stack-trace lines, are listed under it as `file:line`.
+- **Show the code too.** A **Code near the error** section includes a few lines of your code around each `file:line` the report points at, so one report shows the code as well as the error.
 - **Stop and decide.** Click the record button again and Dashcam asks whether to save the recording as a report.
 - **Browse your recordings.** A **Saved Recordings** list in the sidebar, newest first. Crashes caught automatically have a warning icon and show what failed.
 - **Time-stamped, like footage.** The sidebar shows the current date and time and a running clock, and every entry in the report has the time it happened.
@@ -69,6 +71,15 @@ See a full one in [examples/sample-report.md](examples/sample-report.md).
 3. [Find and share your recordings](docs/tutorials/03-save-and-share-the-report.md)
 
 Also: [install](docs/install.md) · [reference: commands and settings](docs/reference.md) · [FAQ](docs/faq.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+
+## Use a report with an AI assistant
+
+If you code with an AI assistant, a report is a much smaller thing to paste than your whole project. It says what failed, in what order, what you had changed, and shows the code around the error. Paste it into the chat and describe what you expected.
+
+Before you paste:
+
+- **Read the report first.** Secret redaction is pattern matching and can miss things, and the report can contain terminal output and code.
+- Pasting sends the text to that AI service. If a project is private, set `dashcam.codeContextLines` to `0` to leave code out of reports.
 
 ## Limits, stated plainly
 

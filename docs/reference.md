@@ -51,6 +51,7 @@ Turn this off with `dashcam.detectCrashes`.
 
 - **Changes.** In a git project, the files with uncommitted changes when the report is saved: modified, added, deleted, renamed or untracked. The folder Dashcam saves reports in is left out. Not shown outside a git project, or when nothing has changed.
 - **Mentioned in the output.** Dashcam scans a command's output and debug output for `path/to/file.ext:line` (for example `app.js:6:12` in a stack trace) and lists the ones that point at a real file inside your project. URLs, version numbers, missing files and paths outside the project are ignored. At most five per entry.
+- **Code near the error.** For every `file:line` the report points at (the ones above, and errors from the Problems panel), a few lines of that file around it, with line numbers and the line the error points at marked `>`. Locations close together are merged into one block. Limits: at most 6 files and 120 lines per report, files over 512 KB are skipped, and lines are cut at 200 characters. Files named like `.env`, `*.pem`, `*.key`, `*.pfx`, `*.p12`, `id_rsa*`, or containing `secret` or `credential` are never included. The text goes through secret redaction like the rest of the report. Set `dashcam.codeContextLines` to `0` to leave code out.
 
 ## Settings
 
@@ -58,6 +59,7 @@ Turn this off with `dashcam.detectCrashes`.
 |---|---|---|
 | `dashcam.autoStart` | `false` | Start recording when a folder opens. A recording is titled with the date and time it started. |
 | `dashcam.bufferMinutes` | `30` | Drop entries older than this many minutes. `0` keeps everything. |
+| `dashcam.codeContextLines` | `5` | In a saved report, include this many lines of code either side of each `file:line` the report points at. `0` leaves code out. Maximum `10`. |
 | `dashcam.detectCrashes` | `true` | When a command exits with an error or a debug session crashes, stop and save the report automatically. |
 | `dashcam.redactSecrets` | `true` | Replace likely secrets with `[REDACTED]` in saved reports. |
 | `dashcam.outputFolder` | `bug-reports` | Where reports are saved, relative to the workspace root. |

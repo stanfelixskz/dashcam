@@ -2,6 +2,11 @@
 
 All notable changes to Dashcam, newest first.
 
+## 0.2.0 (November 2026)
+
+- **Code near the error.** A saved report now includes a few lines of your code around each `file:line` it points at, from stack traces and Problems panel errors, with the line the error points at marked `>`. One report shows the code as well as the error. It is capped in size, passes through secret redaction, and never includes files such as `.env`, `*.pem` or `*.key`.
+- New setting `dashcam.codeContextLines` (default `5`, `0` turns code out of reports, maximum `10`).
+
 ## 0.1.0: first pre-release (November 2026)
 
 The first version, published on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam).

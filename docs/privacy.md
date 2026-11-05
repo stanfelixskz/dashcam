@@ -17,11 +17,12 @@ The short version: **Dashcam works on your computer and sends nothing anywhere.*
 
 ## What a report can contain
 
-A report can contain terminal output, which can contain anything your programs print, including secrets and personal data. Dashcam tries to replace likely secrets with `[REDACTED]`, but this is pattern matching and **it can miss things**. Before you paste a report into a public issue or send it to someone, read it.
+A report can contain terminal output, which can contain anything your programs print, including secrets and personal data. Since version 0.2.0 it can also contain a few lines of your own code around the places an error points at (`dashcam.codeContextLines`, 5 lines by default). Files such as `.env` and `*.pem` are never included, but code can still contain things you would not want to share. Dashcam tries to replace likely secrets with `[REDACTED]`, but this is pattern matching and **it can miss things**. Before you paste a report into a public issue or send it to someone, read it.
 
 Tips:
 
 - Add `bug-reports/` to your `.gitignore` so reports are not committed by accident.
+- Set `"dashcam.codeContextLines": 0` if you do not want any of your code in reports.
 - Dashcam records only while a recording is on. Keep `dashcam.autoStart` off and press the record button only when you want it.
 - Delete any entry you do not want in the Recording list before you stop and save.
 - Reports saved automatically after a crash can contain the failing command's output. Delete a saved recording from the Saved Recordings list if you do not want to keep it.

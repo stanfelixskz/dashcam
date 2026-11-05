@@ -18,6 +18,7 @@ A saved recording is a report. It is one Markdown file.
 | **Environment** | OS, VS Code version, Node, workspace, git branch and commit, whether you have uncommitted changes, and any tool versions you listed in `dashcam.extraTools` |
 | **Changes** | In a git project, the files with uncommitted changes when the report was saved, such as `modified app.js` or `untracked notes.txt`. This answers "what did I change right before it broke?" The reports folder is left out. |
 | **Steps to Reproduce** | The numbered story: saved files, terminal commands with their exit code and output, debug sessions and new errors, each with the time it happened, like the stamp on footage, and `file:line` where there is one. For a command, the `file:line` locations in your project that its output names, such as stack-trace lines, are listed as "Mentioned in the output" |
+| **Code near the error** | A few lines of your code around each `file:line` the report points at, with the line the error points at marked `>`. So the report shows the code as well as the error. Secret-looking files such as `.env` are never included, and `dashcam.codeContextLines` set to `0` leaves code out. |
 | **Errors and Output** | What debug sessions printed to stdout and stderr |
 
 A complete one: [examples/sample-report.md](../../examples/sample-report.md).
