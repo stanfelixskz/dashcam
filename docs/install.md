@@ -10,14 +10,17 @@ Dashcam needs no account, no sign-in and no internet connection.
 
 ## Install it
 
-Dashcam is a pre-release and is not on the VS Code Marketplace yet. Until it is, install it from a `.vsix` file:
+Dashcam is on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam). It is a pre-release (0.1.0).
 
-1. Download `dashcam-0.1.0.vsix` from the [Releases](https://github.com/stanfelixskz/dashcam/releases) page, when one is published there.
-2. In VS Code open the **Extensions** view (Ctrl+Shift+X).
-3. Choose the **…** menu at the top of the view, then **Install from VSIX…**, and pick the file.
-4. Reload the window if VS Code asks.
+1. In VS Code open the **Extensions** view (Ctrl+Shift+X).
+2. Search for **Dashcam** and choose the one published by **Felix** (`stanfelixskz.dashcam`).
+3. Click **Install**.
 
-When it is on the Marketplace, this page will say so and you will be able to search for **Dashcam** in the Extensions view.
+You can also open the Marketplace page above and click **Install**, or run this in a terminal:
+
+```
+code --install-extension stanfelixskz.dashcam
+```
 
 ## Check that it works
 
@@ -28,7 +31,7 @@ If either is missing, see the [FAQ](faq.md).
 
 ## Update and uninstall
 
-- **Update:** install the newer `.vsix` the same way.
+- **Update:** VS Code updates extensions by itself. You can also open the Extensions view and click **Update** next to Dashcam.
 - **Uninstall:** Extensions view, find **Dashcam**, choose **Uninstall**. Reports you saved stay in your projects' `bug-reports/` folders; delete them yourself if you want them gone.
 
 ## Next

@@ -4,7 +4,7 @@ All notable changes to Dashcam, newest first.
 
 ## 0.1.0: first pre-release (November 2026)
 
-The first version. It is not on the VS Code Marketplace yet.
+The first version, published on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam).
 
 **Recording**
 - One **record button** that works like a dashcam's: it starts a recording when Dashcam is off and stops it when it is on. It is at the top of the Dashcam sidebar, beside the settings gear, and it is the only record or stop button. The status bar item is always visible and only shows the state, so you can see at a glance whether it is recording.
