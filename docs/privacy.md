@@ -5,8 +5,8 @@ The short version: **Dashcam works on your computer and sends nothing anywhere.*
 ## What Dashcam does with your data
 
 - **It reads what happens in VS Code while a recording is on:** the terminal commands you run in the integrated terminal and their output, what debug sessions print, the names of the files you save, and new errors in the Problems panel. It does **not** record the contents of your files.
-- **It keeps a recording in progress in VS Code's workspace storage,** on your computer, so it survives a reload. Saving or discarding the recording clears it.
-- **It writes only what you ask it to:** a Markdown report in the folder you choose (`bug-reports/` by default).
+- **It keeps a recording in progress in VS Code's workspace storage,** on your computer, so it survives a reload. Stopping the recording clears it.
+- **It writes only report files:** a Markdown report in the folder you choose (`bug-reports/` by default), when you stop a recording and choose to save it, or when Dashcam catches a crash and saves the report by itself. If you do not want that, set `dashcam.detectCrashes` to `false`.
 - **It does not upload, share or report anything.** Dashcam contains no code that connects to the internet, and no analytics, telemetry or crash reporting. (The source was searched for network code and none was found.)
 - **It does not need an account,** and has no licence server or activation.
 
@@ -22,8 +22,9 @@ A report can contain terminal output, which can contain anything your programs p
 Tips:
 
 - Add `bug-reports/` to your `.gitignore` so reports are not committed by accident.
-- Set `"dashcam.autoCapture": false` if you do not want terminal output recorded at all.
-- Delete any entry you do not want in the Recording list before you save.
+- Dashcam records only while a recording is on. Keep `dashcam.autoStart` off and press the record button only when you want it.
+- Delete any entry you do not want in the Recording list before you stop and save.
+- Reports saved automatically after a crash can contain the failing command's output. Delete a saved recording from the Saved Recordings list if you do not want to keep it.
 
 ## Other software
 

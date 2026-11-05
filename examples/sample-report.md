@@ -1,10 +1,10 @@
-# average() returns NaN for an empty list
+# 2026-11-05 14:08:05
 
-_Recorded 2026-11-05 14:08 with Dashcam_
+_Recording started 2026-11-05 14:08:05, saved 2026-11-05 14:08:49 (UTC+08:00), with Dashcam_
 
 ## Summary
 
-Averaging an empty array prints NaN instead of 0.
+Caught automatically: "node app.js" exited with code 1.
 
 ## Environment
 
@@ -21,14 +21,9 @@ Averaging an empty array prints NaN instead of 0.
 
 ## Steps to Reproduce
 
-1. Saved app.js
+1. **14:08:31** Saved app.js
    - Location: `app.js:1`
-2. Call average with an empty array
-   - Location: `app.js:10`
-   ```javascript
-   console.log("Average of []:", average([]));
-   ```
-3. Run in a terminal:
+2. **14:08:40** Run in a terminal:
    ```sh
    node app.js
    ```
@@ -39,27 +34,5 @@ Averaging an empty array prints NaN instead of 0.
      Average of []: NaN
      Error: bad total, api_key=[REDACTED]
      ```
-4. Problems panel error: Object is possibly 'undefined'.
+3. **14:08:41** Problems panel error: Object is possibly 'undefined'.
    - Location: `app.js:6`
-
-## Inputs
-
-**Argument**
-
-```
-[]
-```
-
-## Expected vs Actual
-
-- **Expected:** 0, or a clear error
-- **Actual:** NaN is printed and the program carries on
-
-## Errors and Output
-
-**Console output**
-
-```
-Average of [2, 4, 6]: 4
-Average of []: NaN
-```

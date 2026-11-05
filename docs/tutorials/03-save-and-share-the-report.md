@@ -1,26 +1,27 @@
-# 3. Save and share the report
+# 3. Find and share your recordings
 
-The report is the footage you keep. It is one Markdown file.
+A saved recording is a report. It is one Markdown file.
 
-## Where it goes
+## Where they are
 
-`bug-reports/<title>-<date>.md` inside your project. If that name exists, `-2`, `-3` and so on are added; nothing is overwritten. Change the folder with `dashcam.outputFolder`.
+- **In VS Code:** the **Saved Recordings** list in the Dashcam sidebar. Newest first, named by date and time, with the reason shown for crashes Dashcam caught. Click one to open it, or use the trash icon to delete it.
+- **On disk:** `bug-reports/dashcam-<date>-<time>.md` inside your project, for example `bug-reports/dashcam-2026-11-05-14-08-05.md`. If that name exists, `-2`, `-3` and so on are added; nothing is overwritten. Change the folder with `dashcam.outputFolder`.
 
 > Reports can contain your terminal output. Consider adding `bug-reports/` to your `.gitignore` so they are not committed by accident.
 
-## What is in it
+## What is in a report
 
 | Section | What goes there |
 |---|---|
-| Title and date | Your title and when the recording started |
-| **Summary** | The one sentence you typed |
+| Title and time stamp | The date and time the recording started, when it was saved, and your time zone (for example `UTC+08:00`), so it makes sense to someone in another country |
+| **Summary** | Only for a crash Dashcam caught: what failed, such as `"node app.js" exited with code 1` |
 | **Environment** | OS, VS Code version, Node, workspace, git branch and commit, whether you have uncommitted changes, and any tool versions you listed in `dashcam.extraTools` |
-| **Steps to Reproduce** | The numbered story: your steps, saved files, and terminal commands with their exit code and output. Steps with a location show `file:line`, and selected code is included |
-| **Inputs** | Anything you added with **Add Input** |
-| **Expected vs Actual** | The two prompts |
-| **Errors and Output** | Anything you added with **Add Error / Output**, and the output of debug sessions |
+| **Steps to Reproduce** | The numbered story: saved files, terminal commands with their exit code and output, debug sessions and new errors, each with the time it happened, like the stamp on footage, and `file:line` where there is one |
+| **Errors and Output** | What debug sessions printed to stdout and stderr |
 
 A complete one: [examples/sample-report.md](../../examples/sample-report.md).
+
+Want to add your own words, such as what you expected? It is a Markdown file. Open it and type under the heading.
 
 ## Check it before you share it
 
@@ -28,8 +29,8 @@ Dashcam replaces anything that looks like a password, token, API key, bearer hea
 
 ## Share it
 
-- **Copy Markdown** appears in the "Saved" message. Click it, and paste into a GitHub or GitLab issue, a Slack message or an email. The headings, code blocks and the environment table render as they are.
-- Or send the `.md` file itself. Any text editor opens it.
+- **Copy Markdown** appears in the message after you save by hand. Click it, and paste into a GitHub or GitLab issue, a Slack message or an email. The headings, code blocks and the environment table render as they are.
+- Or open the report from the Saved Recordings list and copy it from the editor, or send the `.md` file itself. Any text editor opens it.
 
 ## Extra environment lines
 
@@ -39,7 +40,7 @@ To add the versions of other tools to every report, list the commands. Each prin
 { "dashcam.extraTools": ["python --version", "dotnet --version", "npm --version"] }
 ```
 
-These run only in a trusted workspace, and only when you save a report.
+These run only in a trusted workspace, and only when a report is saved.
 
 ## Turning redaction off
 

@@ -24,7 +24,7 @@ You will get a reply, and a fix will be released as soon as it is practical. Das
 - Dashcam contains no code that connects to the internet.
 - It runs two kinds of programs on your computer: `git` (to read the branch, commit and whether you have uncommitted changes) and any commands you list in `dashcam.extraTools` to print tool versions. The second is ignored in an untrusted workspace.
 - Reports are written to the folder you choose with `dashcam.outputFolder`, relative to your project root, and nowhere else.
-- A recording in progress is kept in VS Code's workspace storage on your computer until you save or discard it.
+- A recording in progress is kept in VS Code's workspace storage on your computer until you stop it.
 
 ## Supported versions
 

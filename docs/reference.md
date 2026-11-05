@@ -1,37 +1,66 @@
 # Reference
 
+## The record button
+
+One button, like a dashcam's. It is at the top of the Dashcam sidebar, beside the settings gear. It **starts** a recording when Dashcam is off and **stops** it when it is on. It is the only record or stop button.
+
+The status bar item at the bottom left only shows the state. Clicking it opens the sidebar.
+
+| State | Sidebar button | Status bar |
+|---|---|---|
+| Off | A record icon | An empty circle and "Dashcam" |
+| Recording | A stop icon | A red dot, `REC` and a running clock |
+
 ## Commands
 
 Open the command palette with Ctrl+Shift+P and type **Dashcam**.
 
 | Command | What it does |
 |---|---|
-| **Start Recording** | Starts a recording and asks for a title. If an automatic recording is already running, it just asks for the title and keeps what is recorded. |
-| **Add Step** | Adds a step you describe. The current file, line, and any selected code are attached. |
-| **Add Terminal Command** | Adds a command you type, for terminals Dashcam cannot watch. |
-| **Add Input** | Adds the data that triggered the bug: typed, from your selection, or from the clipboard. |
-| **Add Error / Output** | Adds an error or output block: typed, from your selection, or from the clipboard. |
-| **Set Expected vs Actual** | Two prompts: what should have happened, and what happened instead. |
-| **Finish and Save Report** | Writes the Markdown report and clears the recording. |
-| **Discard Recording** | Throws the recording away, after confirming. |
+| **Start Recording** | Starts a recording, titled with the date and time. No prompts. |
+| **Stop Recording** | Ends the recording. If it has entries, it asks whether to save it as a report. **Cancel** keeps it recording. |
+| **Turn Auto Start On or Off** | Flips `dashcam.autoStart`. The same button is in the sidebar. |
+| **Open Settings** | Opens the settings page filtered to Dashcam. The gear icon in the sidebar does the same. |
+| **Delete Saved Recording** | Deletes a saved report (the trash icon on a row in Saved Recordings), after confirming. |
+| **Refresh Saved Recordings** | Reloads the Saved Recordings list. It also updates by itself. |
 
 In the **Recording** list, hover over an entry for **edit**, **move up**, **move down** and **delete**. Click an entry that has a file to open it at that line.
+
+## The two lists in the sidebar
+
+- **Recording:** the one in progress. A red **REC** line with the start time, then the entries, each with its time. The current date and time and a running clock sit above it.
+- **Saved Recordings:** every report Dashcam saved in the project, newest first, named by date and time. A crash Dashcam caught has a warning icon and shows what failed. Click one to open it.
+
+## When Dashcam saves
+
+1. **You stop it and choose Save Report.** The recording becomes a report and Dashcam turns off.
+2. **It catches a crash.** Dashcam turns itself off and saves the report without asking. See below.
+
+Dashcam never saves anything when you choose **Don't Save**.
+
+## What counts as a crash
+
+- a terminal command exits with a non-zero code other than 130 (Ctrl+C), or
+- a debug session exits with a non-zero code, or stops on an exception.
+
+Dashcam waits about a second so the failing command's last output arrives, saves the report with a Summary line such as `Caught automatically: "node app.js" exited with code 1.`, and shows a message with an **Open Report** button. It stays off until you press the record button again.
+
+Turn this off with `dashcam.detectCrashes`.
 
 ## Settings
 
 | Setting | Default | What it does |
 |---|---|---|
-| `dashcam.autoStart` | `false` | Start recording when a folder opens, and again after each saved report. You name the bug when you save. |
-| `dashcam.autoCapture` | `true` | While recording, add terminal commands, debug sessions, saved files and new Problems errors automatically. |
-| `dashcam.bufferMinutes` | `30` | Drop automatic entries older than this many minutes. `0` keeps everything. Entries you added yourself are always kept. |
-| `dashcam.detectCrashes` | `true` | Offer to save a report when a command exits with an error or a debug session crashes. |
+| `dashcam.autoStart` | `false` | Start recording when a folder opens. A recording is titled with the date and time it started. |
+| `dashcam.bufferMinutes` | `30` | Drop entries older than this many minutes. `0` keeps everything. |
+| `dashcam.detectCrashes` | `true` | When a command exits with an error or a debug session crashes, stop and save the report automatically. |
 | `dashcam.redactSecrets` | `true` | Replace likely secrets with `[REDACTED]` in saved reports. |
 | `dashcam.outputFolder` | `bug-reports` | Where reports are saved, relative to the workspace root. |
 | `dashcam.extraTools` | `[]` | Commands whose first output line is added to the Environment section, for example `["python --version"]`. Ignored in an untrusted workspace. |
 
 ## What is captured automatically
 
-Only while a recording is on and `dashcam.autoCapture` is on.
+Only while a recording is on.
 
 | Source | What is recorded | Notes |
 |---|---|---|
@@ -42,15 +71,6 @@ Only while a recording is on and `dashcam.autoCapture` is on.
 
 At most 200 automatic entries are kept per recording.
 
-## What counts as a crash
-
-A popup offers to save when:
-
-- a terminal command exits with a non-zero code other than 130 (Ctrl+C), or
-- a debug session exits with a non-zero code, or stops on an exception.
-
-At most one popup a minute.
-
 ## What redaction replaces
 
 Private key blocks; JWTs; AWS access key IDs; GitHub tokens; Slack tokens; keys that start `sk-`; `Bearer …` values; passwords inside URLs (`scheme://user:password@host`); and the value after a name containing `password`, `passwd`, `pwd`, `secret`, `token`, `api key`, `access key`, `auth` or `authorization`, when followed by `=` or `:`.
@@ -59,6 +79,6 @@ It is pattern matching. It will not catch a secret that has no tell-tale name or
 
 ## Where things are stored
 
-- **Reports:** your project, in `dashcam.outputFolder`.
-- **A recording in progress:** VS Code's workspace storage on your computer, so it survives a window reload. It is cleared when you save or discard.
+- **Reports:** your project, in `dashcam.outputFolder`, named `dashcam-<date>-<time>.md`.
+- **A recording in progress:** VS Code's workspace storage on your computer, so it survives a window reload. It is cleared when you stop it.
 - Nothing else. Dashcam does not send anything anywhere.
