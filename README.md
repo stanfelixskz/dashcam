@@ -2,7 +2,7 @@
 
 **A dashcam for your code.** A car dashcam records the road while you drive, and when there is a crash you keep the footage. Dashcam does the same while you work in VS Code: it records what happens, and when something breaks it saves the footage as a shareable Markdown bug report.
 
-> **Status: pre-release (0.3.0).** Dashcam is free and on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam): search for **Dashcam** in the Extensions view, or see the [install guide](docs/install.md). This repository holds the documentation, tutorials, examples and issue tracker. The extension's source code is not published here.
+> **Status: pre-release (0.4.0).** Dashcam is free and on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=stanfelixskz.dashcam): search for **Dashcam** in the Extensions view, or see the [install guide](docs/install.md). This repository holds the documentation, tutorials, examples and issue tracker. The extension's source code is not published here.
 
 ## See it
 
@@ -43,6 +43,9 @@ _Recording started 2026-11-05 14:08:05, saved 2026-11-05 14:21:40 (UTC+08:00), w
                             passed, what you changed, where you were
 ## Environment            OS, VS Code, Node, git branch and commit
 ## Project                project type, tool versions, dependencies
+## What changed since it last worked   git, lockfile and config changes between the last pass
+                          and the failure, including ones made outside the editor
+## How to reproduce       commit, uncommitted state, tool versions, command and folder
 ## Changes                the files with uncommitted changes (git projects)
 ## Your uncommitted changes   the real git diff
 ## Steps to Reproduce     1. 14:08:31 Saved app.js
@@ -50,9 +53,10 @@ _Recording started 2026-11-05 14:08:05, saved 2026-11-05 14:21:40 (UTC+08:00), w
                              and the file:line locations named in that output)
 ## Code near the error    a few lines around each file:line the report points at
 ## Errors and Output      what debug sessions printed
+## What this report cannot see   anything dropped or not collected, and the standing limits
 ```
 
-See a full one in [examples/sample-report.md](examples/sample-report.md).
+See a full one in [examples/sample-report.md](examples/sample-report.md). That sample was made with 0.3.0, so it does not show the newest sections.
 
 ## What you can do
 
@@ -60,14 +64,17 @@ See a full one in [examples/sample-report.md](examples/sample-report.md).
 - **Catch crashes.** A failing command or a crashed debug session stops the recording and saves the report, with a message and an **Open Report** button.
 - **Show what changed.** In a git project, a **Changes** section lists the files with uncommitted changes. File and line locations named in a command's output, such as stack-trace lines, are listed under it as `file:line`.
 - **Get the point at a glance.** The Summary lists the error, where it points, **the last time the same command passed** (and the files you saved in between), what you changed, and where you were.
+- **Show what changed since it last worked.** For the failing command, what Dashcam observed between the last time it passed and the failure: the git branch or commit, lockfile and config files that differ, files you saved, and changes made **outside the editor** (a `git checkout`, an `npm install`) with the time each happened. It lists observations only, never a cause.
+- **Say how to reproduce it.** The commit and branch, the uncommitted and untracked files, tool versions, the command and its folder, and what the recipe does not cover.
 - **Show what changed.** The real `git diff` of your uncommitted changes, so a reader sees exactly what you edited.
+- **Never fail silently.** A last section, **What this report cannot see**, lists anything Dashcam dropped or could not collect.
 - **Show the code too.** A **Code near the error** section includes a few lines of your code around each `file:line` the report points at, with the lines you changed marked `*`, so one report shows the code as well as the error.
 - **Say what it ran on.** The project type, tool versions and dependencies, the folder, shell and duration of each command, and the Problems panel at the time.
 - **Stop and decide.** Click the record button again and Dashcam asks whether to save the recording as a report.
 - **Browse your recordings.** A **Saved Recordings** list in the sidebar, newest first. Crashes caught automatically have a warning icon and show what failed.
 - **Time-stamped, like footage.** The sidebar shows the current date and time and a running clock, and every entry in the report has the time it happened.
 - **Edit the recording.** Edit, reorder or delete any entry, and click one to jump to its file.
-- **Keep secrets out.** Anything that looks like a password, token, API key, bearer header, JWT, private key or URL credential is replaced with `[REDACTED]`.
+- **Keep secrets out.** Anything that looks like a password, token, API key, bearer header, JWT, private key or URL credential, including secrets typed on a command line (`--password x`, `curl -u user:pass`), is replaced with `[REDACTED]`.
 - **Stay private.** Dashcam makes no network connections. Nothing leaves your computer. See [privacy](docs/privacy.md).
 
 ## Learn it in ten minutes
@@ -93,7 +100,8 @@ Before you paste:
 - Terminal capture needs **VS Code 1.93 or newer** and a terminal with shell integration (PowerShell, bash, zsh and similar). Where it is not available, terminal commands are not recorded.
 - A command that is supposed to fail, such as a test run, also counts as a crash and ends the recording. You can switch crash catching off with `dashcam.detectCrashes`.
 - Secret redaction is pattern matching. It can miss things. Read a report before you share it.
-- Entries older than the rolling window are dropped.
+- Entries older than the rolling window are dropped, and the report says when that happens.
+- Outside the editor, Dashcam sees only the git branch and commit and the manifest, lockfile and config files in the project's top folder. Other changes made elsewhere are not seen, so a change not listed may still have happened.
 
 ## Help and feedback
 

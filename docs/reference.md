@@ -57,6 +57,15 @@ Turn this off with `dashcam.detectCrashes`.
 - **Project.** What kind of project this is, found from files in the project's root: `package.json` (Node.js), `requirements.txt`, `pyproject.toml` or `Pipfile` (Python), a `.csproj` or `.sln` (.NET), `go.mod` (Go), `pom.xml` or `build.gradle` (Java), `Cargo.toml` (Rust). It lists the tool versions (`node --version`, `npm --version`, `python --version`, `dotnet --version`, `go version`, `java -version`, `rustc --version`) and up to 30 dependencies with their declared versions.
 - **How each command ran.** The folder it ran in (relative to the project), the shell, and how long it took. If its output was longer than 6,000 characters, the first 2,000 and the last 4,000 are kept, with a line saying how many characters were left out.
 - **Problems panel at the time.** The number of errors and warnings in the Problems panel when the report was saved, and the first eight errors with their `file:line`.
+- **What changed since it last worked** (0.4.0). For the last failing command: when the same command last passed, and what Dashcam observed between the end of that run and the start of the failing one. That is the git branch and commit, manifest, lockfile and config files whose content differs, files saved in the editor, and changes made outside the editor with their times. If nothing was seen it says so. It lists observations only and does not say any of them caused the failure. If there was no earlier passing run, it says so. Without a failure, the section appears only if something changed outside the editor.
+- **How to reproduce** (0.4.0). Shown when a command failed: the commit and branch, how many tracked files are changed and which new files git does not track yet, the tool versions from the Project section, the command and the folder it ran in, the exit code and error line, and a line on what it does not cover (environment variables, git-ignored files, installed packages that differ from the lockfile). It notes when the diff is incomplete because files were left out or lines were cut.
+- **What this report cannot see** (0.3.1). Always the last section. It lists what was dropped (entries removed by the time window or size limit), what could not be collected (a git command that was too slow or too large, output cut short, project state that could not be read), and the standing limits: only this VS Code window is recorded, and outside the editor only the git branch and commit and the watched files are seen.
+
+### Changes outside the editor
+
+While a recording is on, Dashcam notices when the git branch or commit changes (read from the `.git` folder, no git command is run) and when one of these files in the **project's top folder** changes or is created or removed without being saved in the editor: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`, `yarn.lock`, `pnpm-lock.yaml`, `bun.lock`, `requirements.txt`, `requirements-dev.txt`, `Pipfile`, `Pipfile.lock`, `poetry.lock`, `pyproject.toml`, `setup.py`, `setup.cfg`, `go.mod`, `go.sum`, `Cargo.toml`, `Cargo.lock`, `Gemfile`, `Gemfile.lock`, `composer.json`, `composer.lock`, `pom.xml`, `build.gradle`, `global.json`, `nuget.config`, `*.csproj`, `*.fsproj`, `*.sln`, `tsconfig.json`, `jsconfig.json`, bundler and lint configs, `.nvmrc`, `.node-version`, `.python-version`, `.tool-versions`, `.npmrc`, `Dockerfile`, `docker-compose.yml`, `Makefile`, `config.json`, `settings.json`, `appsettings*.json`, and `.env` files. Each appears as a step such as "Changed outside the editor: package-lock.json". Files in subfolders and all other files are not watched. The watching runs only in a trusted workspace, and changes are kept only while a recording is on.
+
+Around every terminal command Dashcam also keeps a small snapshot of the project's state, before and after it: the git commit and branch and a short digest of each watched file. Only digests are kept, never content, and for `.env` files not even a digest (only the size and modified time). The snapshots are used to compare two runs.
 
 ## Settings
 
@@ -83,11 +92,13 @@ Only while a recording is on.
 | Debug sessions | That a session started, and what it printed to stdout and stderr (last ~6,000 characters) | |
 | Problems panel | New **errors**: the message (first line), file and line | Errors already present when the window opened are not reported |
 
-At most 200 automatic entries are kept per recording.
+Changes outside the editor (see above) are recorded too. There is no fixed limit on the number of entries. Entries older than `dashcam.bufferMinutes` are dropped, and if a recording grows past about 2 MB or 2,000 entries the oldest are dropped first. The report states how many were dropped. A command that is still running is never dropped.
 
 ## What redaction replaces
 
-Private key blocks; JWTs; AWS access key IDs; GitHub tokens; Slack tokens; keys that start `sk-`; `Bearer …` values; passwords inside URLs (`scheme://user:password@host`); and the value after a name containing `password`, `passwd`, `pwd`, `secret`, `token`, `api key`, `access key`, `auth` or `authorization`, when followed by `=` or `:`.
+Private key blocks; JWTs; AWS access key IDs; GitHub (including `github_pat_`), GitLab, Slack, Stripe, Google (`AIza`), SendGrid and npm tokens; keys that start `sk-`; `Bearer …` values; passwords inside URLs (`scheme://user:password@host`); the credential after `Authorization: Basic` or `Digest` and similar (the scheme word is kept); and the value after a name containing `password`, `passwd`, `pwd`, `secret`, `token`, `api key`, `access key`, `auth` or `authorization`, when followed by `=` or `:`.
+
+Since 0.3.1 it also covers secrets given on a command line: `--password x`, `--token x`, `--api-key x` and similar flags (but not flags such as `--no-password`), `mysql -pVALUE`, `curl -u user:pass`, npm `_authToken` lines and `aws configure set …secret…`. Ordinary text such as `--author=alex` is left alone. The pop-up shown when a crash is caught is redacted too.
 
 It is pattern matching. It will not catch a secret that has no tell-tale name or shape.
 

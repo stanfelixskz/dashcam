@@ -61,6 +61,10 @@ Entries older than 30 minutes drop off. Make the window shorter with `dashcam.bu
 
 A few lines of it. Since 0.2.0, a report includes **Code near the error**: the lines around each `file:line` the report points at (from a stack trace or a Problems panel error), with the line the error points at marked `>`. Since 0.3.0 it also includes the `git diff` of your uncommitted changes (capped at `dashcam.diffMaxLines`, 150 lines by default). It never includes the whole project, and never files such as `.env` or `*.pem`. To leave code out, set `dashcam.codeContextLines` and `dashcam.diffMaxLines` to `0`. For the limits, see the [reference](reference.md).
 
+## Does it show what changed since my code last worked?
+
+Since 0.4.0, yes, for the command that failed. The report has a **What changed since it last worked** section that compares the last time the same command passed with the failing run: the git branch or commit, manifest, lockfile and config files that differ, files you saved, and changes made outside the editor (a `git checkout`, an `npm install`) with times. It only lists what Dashcam saw, and does not say any of it caused the failure. It sees outside changes only for git and for those watched files in the project's top folder, so something not listed may still have changed. It needs an earlier passing run of the same command in the same recording.
+
 ## Can I paste a report into an AI assistant?
 
 Yes, that is a good use for it: it is a lot smaller than pasting your project, and it shows the error, what you changed and the code around the error. Read it first, because redaction is pattern matching, and remember that pasting sends the text to that service.

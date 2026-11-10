@@ -2,6 +2,30 @@
 
 All notable changes to Dashcam, newest first.
 
+## 0.4.0 (November 2026)
+
+Reports now answer "what changed since it last worked?", including changes made outside the editor, and say how to reproduce the failure.
+
+- **What changed since it last worked.** A new report section for the failing command. It compares the last time the same command passed with the failing run and lists what Dashcam observed in between: the git branch and commit, manifest, lockfile and config files that differ, files you saved in the editor, and changes made outside the editor with the time each happened. If nothing was observed it says so. It lists observations only and never claims one of them caused the failure.
+- **Changes outside the editor are now recorded** while you record: a `git checkout`, `git pull` or new commit, an `npm install` rewriting the lockfile, or an edited config file show up as steps (for example "Git branch changed outside the editor: main to feature"). Watched files are the manifests, lockfiles and config files in the project's top folder (`package.json`, `package-lock.json`, `yarn.lock`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `*.csproj`, `tsconfig.json`, `Dockerfile` and similar) plus `.env` files. For `.env` files Dashcam keeps only that the file changed, never its content. Other files changed outside the editor are not seen, and the report says so.
+- **How to reproduce.** A new report section for the failing command: the commit and branch, the uncommitted state (changed files, and new files git does not track yet), the tool versions, the command and the folder it ran in, what happened, and what the recipe does not cover. It flags when the diff in the report is incomplete.
+- Each command now gets a small snapshot of the project's state before and after it (git commit and branch, and a short digest of each watched file). Only digests are kept, and the snapshot is taken alongside the command so it never delays output. If a snapshot fails, the report says so.
+- Folder watching runs only in a trusted workspace.
+
+## 0.3.1 (November 2026)
+
+A trust update: fewer secrets slipping through, no silently dropped events, and the report says what it could not see.
+
+- **Better secret redaction.** Passwords and tokens given on the command line are now hidden: `--password x`, `--token x`, `--api-key x`, `mysql -pVALUE`, `curl -u user:pass`, npm and AWS credentials, and more token formats (GitHub, GitLab, Stripe, Google, SendGrid, npm). `Authorization: Basic ...` keeps the word `Basic` and hides the credential. Ordinary flags such as `--author=alex` are no longer hidden by mistake. The "caught a crash" pop-up is redacted too.
+- **No silent event cap.** The old limit of 200 recorded events is gone, and it no longer switches off crash catching. Old entries are dropped by the rolling time window, with a size limit as a safety net, and the report tells you when anything was dropped.
+- **More stack traces understood.** `file:line` locations are now found in Python (`File "x", line N`), .NET (`in x:line N`), TypeScript and C# compiler errors (`x(12,5)`) and PHP traces, as well as the formats supported before.
+- **A new last section: "What this report cannot see".** It lists anything Dashcam could not collect or had to cut (a git command that was too slow or too large, output that was cut, entries dropped), and states that only activity in this VS Code window is recorded.
+- **Git problems are no longer silent.** A slow or oversized `git diff` is reported in that section instead of just vanishing, and large diffs are now handled.
+- **Faster reports.** The environment, uncommitted changes, project lookup and diff are collected at the same time.
+- **Fixed:** a tool that is not installed no longer shows its error message ("'python' is not recognized...") as its version.
+- **Fixed:** the Summary no longer loses a closing backtick when it quotes a command containing a secret.
+- Paths inside your project are shown relative to it, in any slash style or letter case.
+
 ## 0.3.0 (November 2026)
 
 A much more useful report. Everything below is added to the saved Markdown file automatically.
